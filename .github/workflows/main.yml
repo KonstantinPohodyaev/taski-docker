@@ -131,19 +131,19 @@ jobs:
     - name: Copy docker-compose.yml via ssh
       uses: appleboy/scp-action@master
       with:
-        host: ${{ secrets.HOST  }}
-        username: ${{ secrets.USERNAME  }}
-        key: ${{ secrets.SSH_KEY  }}
-        passphrase: ${{ secrets.PASSPHRASE  }}
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        passphrase: ${{ secrets.PASSPHRASE }}
         source: "docker-compose.production.yml"
-        targer: "taski"
+        target: "taski"
     - name: Executing remote ssh commands to deploy
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST  }}
-        username: ${{ secrets.USERNAME  }}
-        key: ${{ secrets.SSH_KEY  }}
-        passphrase: ${{ secrets.PASSPHRASE  }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        passphrase: ${{ secrets.PASSPHRASE }}
         scripts: |
           cd taski
           sudo docker compose -f docker-compose.production.yml pull
